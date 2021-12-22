@@ -1,5 +1,6 @@
 import time
 import distutils.file_util
+import os
 
 import Utilities
 
@@ -35,6 +36,8 @@ while len(listOfMembers) > 0:
 
          # make a backup of the raw tweet data in case we need to analyze it again
         destinationPath = GOOGLE_DRIVE_RESULTS + memberFolder + "/"
+        if (os.path.exists(destinationPath) == False):
+            os.mkdir(destinationPath)
         if (tweetsPath is not None):
             distutils.file_util.copy_file(tweetsPath, destinationPath)
             logger.log("copied " + tweetsPath + " to " + destinationPath)
